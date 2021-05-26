@@ -13,9 +13,10 @@ public abstract class Piece {
 
   //******* Les Constructeurs  **********
 
-  public Piece(boolean pieceCouleur, String pieceUnicode, ArrayList < Case > cases) {
+  public Piece(boolean pieceCouleur, String pieceUnicode, Case positionPiece, ArrayList < Case > cases) {
     this.couleur = pieceCouleur;
     this.unicode = pieceUnicode;
+    this.position = positionPiece;
     this.caseDeplacer = cases;
   }
 
