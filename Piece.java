@@ -1,5 +1,5 @@
 import com.modeliosoft.modelio.javadesigner.annotations.objid;
-import java.util. * ;
+import java.util.* ;
 
 public abstract class Piece {
 
@@ -7,6 +7,7 @@ public abstract class Piece {
 
   private boolean couleur;
   private String unicode;
+  private Case position;
   // private String tableau de déplacement;
   private ArrayList < Case > caseDeplacer = new ArrayList < Case > ();
 
