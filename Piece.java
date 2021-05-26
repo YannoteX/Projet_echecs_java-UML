@@ -1,29 +1,28 @@
-import com.modeliosoft.modelio.javadesigner.annotations.objid;
 import java.util.* ;
 
-public abstract class Piece {
+public class Piece {
 
   //******* Les Attributs **********
 
-  private boolean couleur;
-  private String unicode;
-  private Case position;
+  boolean couleur;
+  String unicode;
+  Case emplacement;
   // private String tableau de déplacement;
-  private ArrayList < Case > caseDeplacer = new ArrayList < Case > ();
+  ArrayList <Integer> caseDeplacer = new ArrayList <Integer> ();
 
   //******* Les Constructeurs  **********
 
-  public Piece(boolean pieceCouleur, String pieceUnicode, Case positionPiece, ArrayList < Case > cases) {
+  public Piece(boolean pieceCouleur, String pieceUnicode, Case positionPiece, ArrayList <Integer> cases) {
     this.couleur = pieceCouleur;
     this.unicode = pieceUnicode;
-    this.position = positionPiece;
+    this.emplacement = positionPiece;
     this.caseDeplacer = cases;
   }
 
   public Piece(boolean pieceCouleur, String pieceUnicode) {
     this.couleur = pieceCouleur;
     this.unicode = pieceUnicode;
-    this.caseDeplacer = new ArrayList < Case > ();
+    this.caseDeplacer = new ArrayList <Integer> ();
   }
 
   //*********** Les Getters *************
@@ -36,7 +35,7 @@ public abstract class Piece {
     return this.unicode;
   }
 
-  public ArrayList < Case > getCaseDeplacer() {
+  public ArrayList<Integer> getCaseDeplacer() {
     return this.caseDeplacer;
   }
 
@@ -46,22 +45,23 @@ public abstract class Piece {
     this.couleur = newColor;
   }
   // je sais pas si on a besoin un setter pour unicode
-  public void setCase(int i, Case c) {
+  public void setCase(int i, int c) {
     this.caseDeplacer.set(i, c);
   }
 
-  public void setCases(ArrayList < Case > newCases) {
+  public void setCases(ArrayList <Integer> newCases) {
     this.caseDeplacer = newCases;
   }
   //*********** Les Méthodes *************
 
-  public abstract void calculDeplacementPossible();
+  public void calculDeplacementPossible(){
+  }
 
-  public boolean caseExiste(Case c) {
+  public boolean caseExiste(int c) {
     return this.caseDeplacer.contains(c);
   }
 
-  public boolean addCase(Case c) {
+  public boolean addCase(int c) {
     if (! (caseExiste(c))) {
       this.caseDeplacer.add(c);
       return true;

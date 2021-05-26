@@ -1,10 +1,8 @@
-import com.modeliosoft.modelio.javadesigner.annotations.objid;
-
 public class Case {
 
   //********** Les Attributs **********
-  private boolean couleur;
-  private int id;
+  private boolean couleur;  //noir -> false  ;  blanc -> true
+  public int id;  //notation (ex:31) : Colonne | Ligne
   private boolean caseOccupee;
   private Piece piece;
 
@@ -27,7 +25,14 @@ public class Case {
     this.couleur = caseCouleur;
     this.id = caseId;
     this.caseOccupee = caseOccup;
-    this.piece = new Piece();
+    this.piece = null;
+  }
+
+  public Case(boolean caseCouleur, int caseId, boolean caseOccup, Piece pieceExistante) {
+    this.couleur = caseCouleur;
+    this.id = caseId;
+    this.caseOccupee = caseOccup;
+    this.piece = pieceExistante;
   }
 
   //********** Les Getters **********
@@ -56,8 +61,8 @@ public class Case {
     this.id = newId;
   }
 
-  public void setCaseOccupee(boolean caseOccup) {
-    this.caseOccupee = caseOccup;
+  public void setCaseOccupee(boolean occupation) {
+    this.caseOccupee = occupation;
   }
 
   public void setPiece(Piece newPiece) {
@@ -65,15 +70,15 @@ public class Case {
   }
 
   //********** Les Méthodes **********
-  public Piece pieceExistante(case c) {
-    if (c.caseOccupee()) {
+  public Piece pieceExistante(Case c) {
+    if (c.caseOccupee==true) {
       return c.getPiece();
     }
     return null;
   }
 
-  public boolean caseOccupee(Case c) {
-    if (c.getPiece!=null){
+  public boolean isCaseOccupee(Case c) {
+    if (c.getPiece()!=null){
       c.setCaseOccupee(true);
       return true;
     }
@@ -84,7 +89,7 @@ public class Case {
   public void placementPiece(Piece pieceCalculee) {}
 
   public void supprimerPiece(Case c) {
-    if (c.caseOccupee()){
+    if (c.caseOccupee!=true){
       c.setPiece(null);
     }
   }
