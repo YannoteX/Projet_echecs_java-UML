@@ -71,7 +71,7 @@ public class Case {
 
   //********** Les Méthodes **********
   public Piece pieceExistante(Case c) {
-    if (c.caseOccupee==true) {
+    if (c.caseOccupee()==true) {
       return c.getPiece();
     }
     return null;
@@ -89,7 +89,7 @@ public class Case {
   public void placementPiece(Piece pieceCalculee) {}
 
   public void supprimerPiece(Case c) {
-    if (c.caseOccupee!=true){
+    if (c.caseOccupee()!=true){
       c.setPiece(null);
     }
   }
