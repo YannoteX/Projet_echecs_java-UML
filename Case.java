@@ -14,12 +14,12 @@ public class Case {
     this.piece = piece;
   }
 
-  public Case(boolean caseCouleur, int caseId, boolean caseOccup, boolean pieceCouleur, String pieceUnicode) {
+  /*public Case(boolean caseCouleur, int caseId, boolean caseOccup, boolean pieceCouleur, String pieceUnicode) {
     this.couleur = caseCouleur;
     this.id = caseId;
     this.caseOccupee = caseOccup;
     this.piece = new Piece(pieceCouleur, pieceUnicode);
-  }
+  }*/
 
   public Case(boolean caseCouleur, int caseId, boolean caseOccup) {
     this.couleur = caseCouleur;
