@@ -28,13 +28,6 @@ public class Case {
     this.piece = null;
   }
 
-  public Case(boolean caseCouleur, int caseId, boolean caseOccup, Piece pieceExistante) {
-    this.couleur = caseCouleur;
-    this.id = caseId;
-    this.caseOccupee = caseOccup;
-    this.piece = pieceExistante;
-  }
-
   //********** Les Getters **********
   public boolean isCouleur() {
     return this.couleur;
@@ -93,5 +86,15 @@ public class Case {
       c.setPiece(null);
     }
   }
+  // créer une méthode qui retourne l'unicode du pièce si existe
+  /*  public String afficherPiece(Case c){
+    Piece p = new (object) Piece;
+    String unicode = " ";
+    if(pieceExistante(c)!=null){
+      unicode = p.getUnicode();
+      return unicode;
+    }
+    return unicode;
+  }*/
 
 }
