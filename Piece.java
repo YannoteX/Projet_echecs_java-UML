@@ -19,10 +19,11 @@ public class Piece {
     this.caseDeplacer = cases;
   }
 
-  public Piece(boolean pieceCouleur, String pieceUnicode) {
+  public Piece(boolean pieceCouleur, String pieceUnicode, Case positionPiece) {
     this.couleur = pieceCouleur;
     this.unicode = pieceUnicode;
-    this.caseDeplacer = new int[] {};
+    this.emplacement = positionPiece;
+    this.caseDeplacer = new int[] {}; // pas de paranthèses je pense
   }
 
   //*********** Les Getters *************
