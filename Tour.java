@@ -1,11 +1,11 @@
 
 public class Tour extends Piece {
    
-    public Pion(boolean pionCouleur, String pionUnicode, Case positionPiece){
+    public Tour(boolean pionCouleur, String pionUnicode, Case positionPiece){
       super(pionCouleur, pionUnicode,positionPiece);
     }
 
-    public Pion(boolean pieceCouleur, String pieceUnicode, Case positionPiece, int[] cases){
+    public Tour(boolean pieceCouleur, String pieceUnicode, Case positionPiece, int[] cases){
       super (pieceCouleur, pieceUnicode, positionPiece, cases);
     }
 
