@@ -1,6 +1,6 @@
 import java.util.* ;
 
-public class Piece {
+public class Piece { //penser à mettre en abstract
 
   //******* Les Attributs **********
 
