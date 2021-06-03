@@ -12,6 +12,8 @@ public class Echiquier {
 
     public void initCaseEtPiece() {
       this.echiquier();
+        
+        // initialisé pion noir
       Piece pionN1 = new Pion(false,"\u265F ",17,new VerificationPiece(this));
       Piece pionN2 = new Pion(false,"\u265F ",27,new VerificationPiece(this));
       Piece pionN3 = new Pion(false,"\u265F ",37,new VerificationPiece(this));
@@ -21,6 +23,7 @@ public class Echiquier {
       Piece pionN7 = new Pion(false,"\u265F ",77,new VerificationPiece(this));
       Piece pionN8 = new Pion(false,"\u265F ",87,new VerificationPiece(this));
 
+        // initialisé pion blanche
       Piece pionBl = new Pion(true,"\u2659 ",12,new VerificationPiece(this));
       Piece pionB2 = new Pion(true,"\u2659 ",22,new VerificationPiece(this));
       Piece pionB3 = new Pion(true,"\u2659 ",32,new VerificationPiece(this));
@@ -29,20 +32,22 @@ public class Echiquier {
       Piece pionB6 = new Pion(true,"\u2659 ",62,new VerificationPiece(this));
       Piece pionB7 = new Pion(true,"\u2659 ",72,new VerificationPiece(this));
       Piece pionB8 = new Pion(true,"\u2659 ",82,new VerificationPiece(this));
-
+    
+        // initialise les autres pieces blanche
       Piece tourB1     = new Tour(true,"\u2656 ",18,new VerificationPiece(this));
       Piece cavalierB1 = new Cavalier(true,"\u2658 ",28,new VerificationPiece(this));
       Piece fouB1      = new Fou(true,"\u2657 ",38,new VerificationPiece(this));
-      Piece reineB1    = new Reine(true,"\u2655 ",48,new VerificationPiece(this));
+      Piece dameB1    = new Dame(true,"\u2655 ",48,new VerificationPiece(this));
       Piece roiB1      = new Roi(true,"\u2654 ",58,new VerificationPiece(this));
       Piece fouB2      = new Fou(true,"\u2657 ",68,new VerificationPiece(this));
       Piece cavalierB2 = new Cavalier(true,"\u2658 ",78,new VerificationPiece(this));
       Piece tourB2     = new Tour(true,"\u2656 ",88,new VerificationPiece(this));
 
+        // initialise les autres pieces noir
       Piece tourN1     = new Tour(true,"\u265C ",11,new VerificationPiece(this));
       Piece cavalierN1 = new Cavalier(true,"\u265E ",21,new VerificationPiece(this));
       Piece fouN1      = new Fou(true,"\u265D ",31,new VerificationPiece(this));
-      Piece reineN1    = new Reine(true,"\u265B ",41,new VerificationPiece(this));
+      Piece dameN1    = new Dame(true,"\u265B ",41,new VerificationPiece(this));
       Piece roiN1      = new Roi(true,"\u265A ",51,new VerificationPiece(this));
       Piece fouN2      = new Fou(true,"\u265D ",61,new VerificationPiece(this));
       Piece cavalierN2 = new Cavalier(true,"\u265E ",71,new VerificationPiece(this));
@@ -51,7 +56,7 @@ public class Echiquier {
       echiquier[0] = new Case(true,18,tourN1,true);
       echiquier[1] = new Case(false,28,cavalierN1,true);
       echiquier[2] = new Case(true,38,fouN1,true);
-      echiquier[3] = new Case(false,48,reineN1,true);
+      echiquier[3] = new Case(false,48,dameN1,true);
       echiquier[4] = new Case(true,58,roiN1,true);
       echiquier[5] = new Case(false,68,fouN2,true);
       echiquier[6] = new Case(true,78,cavalierN2,true);
@@ -78,7 +83,7 @@ public class Echiquier {
       echiquier[56] = new Case(false,11,tourB1,true);
       echiquier[57] = new Case(true,21,cavalierB1,true);
       echiquier[58] = new Case(false,31,fouB1,true);
-      echiquier[59] = new Case(true,41,reineB1,true);
+      echiquier[59] = new Case(true,41,dameB1,true);
       echiquier[60] = new Case(false,51,roiB1,true);
       echiquier[61] = new Case(true,61,fouB2,true);
       echiquier[62] = new Case(false,71,cavalierB2,true);
