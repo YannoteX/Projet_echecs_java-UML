@@ -11,7 +11,7 @@ public class VerificationPiece{
 
 	public int verification(int iDCase, boolean couleurPieceCourante){
 		int i = 0;
-		while(i<this.tableauDeJeuCourant.echiquier.lenght){
+		while(i<this.tableauDeJeuCourant.echiquier.length){
 
 
 			if (this.tableauDeJeuCourant.echiquier[i].id == iDCase){
