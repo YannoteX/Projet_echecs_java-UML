@@ -4,7 +4,7 @@ public class Pion extends Piece  {
   
   public Pion(boolean pionCouleur, String pionUnicode){
       super(pionCouleur, pionUnicode);
-    }
+   }
 
   public Pion(boolean pieceCouleur, String pieceUnicode, Case positionPiece, int[] cases){
     super (pieceCouleur, pieceUnicode, positionPiece, cases);
@@ -34,8 +34,16 @@ public class Pion extends Piece  {
       }
 
     }
+  
+  public void mangerUnePiece(){
 
+   }
 
+  public String toString(){
+      String s = " ";
+      s = this.getUnicode();
+      return s;
+   }
 
-  }
+  
 }
