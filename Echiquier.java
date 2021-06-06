@@ -71,7 +71,7 @@ public class Echiquier {
             for(int j = 8; j > 0; j--){
                 PrintStream out = new PrintStream (System.out, true , "UTF8" );
                 if(echiquier[i] != null) {
-                    String unicode = echiquier[m].afficherPieceDelaCase() 
+                    String unicode = echiquier[m].afficherPieceDelaCase();
                     out.print("| "+unicode+" ");
                 }
                 else {
