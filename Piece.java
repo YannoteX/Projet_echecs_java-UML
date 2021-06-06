@@ -19,11 +19,10 @@ public class Piece { //penser à mettre en abstract
     this.caseDeplacer = cases;
   }
 
-  public Piece(boolean pieceCouleur, String pieceUnicode, Case positionPiece) {
+  public Piece(boolean pieceCouleur, String pieceUnicode) {
     this.couleur = pieceCouleur;
     this.unicode = pieceUnicode;
-    this.emplacement = positionPiece;
-    this.caseDeplacer = new int[] {}; // pas de paranthèses je pense
+    this.caseDeplacer = new int[] ; // pas de paranthèses je pense
   }
 
   //*********** Les Getters *************
