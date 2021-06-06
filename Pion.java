@@ -31,8 +31,8 @@ public class Pion extends Piece  {
       else if(ligne+1<8){
         ligne++;
         this.addCase(colonne+ligne);       //autrement il ne peut s'avancer que d'une case
+        }
       }
-
     }
   
   public void mangerUnePiece(){
