@@ -2,8 +2,8 @@ import java.util.* ;
 
 public class Pion extends Piece  {
   
-  public Pion(boolean pionCouleur, String pionUnicode, Case positionPiece){
-      super(pionCouleur, pionUnicode,positionPiece);
+  public Pion(boolean pionCouleur, String pionUnicode){
+      super(pionCouleur, pionUnicode);
     }
 
   public Pion(boolean pieceCouleur, String pieceUnicode, Case positionPiece, int[] cases){
