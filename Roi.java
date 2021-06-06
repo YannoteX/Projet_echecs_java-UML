@@ -1,8 +1,8 @@
 
 public class Roi extends Piece {
    
-    public Roi(<boolean pionCouleur, String pionUnicode, Case positionPiece){
-      super(pionCouleur, pionUnicode,positionPiece);
+    public Roi(<boolean roiCouleur, String roiUnicode){
+      super(roiCouleur, roiUnicode);
     }
 
     public Roi(boolean pieceCouleur, String pieceUnicode, Case positionPiece, int[] cases){
@@ -10,6 +10,16 @@ public class Roi extends Piece {
     }
 
     public void calculDeplacementPossible() {
+    }
+      
+    public void mangerUnePiece(){
+
+    }
+
+    public String toString(){
+      String s = " ";
+      s = this.getUnicode();
+      return s;
     }
 
 }
