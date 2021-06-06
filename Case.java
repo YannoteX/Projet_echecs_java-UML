@@ -86,15 +86,15 @@ public class Case {
       c.setPiece(null);
     }
   }
-  // créer une méthode qui retourne l'unicode du pièce si existe
-  /*  public String afficherPiece(Case c){
-    Piece p = new (object) Piece;
+  public String afficherPieceDelaCase(){
+
     String unicode = " ";
-    if(pieceExistante(c)!=null){
+    if(this.caseOccupee==true){
+      Piece p = this.piece;
       unicode = p.getUnicode();
       return unicode;
     }
     return unicode;
-  }*/
+  }
 
 }
