@@ -1,7 +1,7 @@
 
 public class Roi extends Piece {
    
-    public Roi(<boolean roiCouleur, String roiUnicode){
+    public Roi(boolean roiCouleur, String roiUnicode){
       super(roiCouleur, roiUnicode);
     }
 
