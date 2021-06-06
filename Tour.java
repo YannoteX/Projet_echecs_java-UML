@@ -1,8 +1,8 @@
 
 public class Tour extends Piece {
    
-    public Tour(boolean pionCouleur, String pionUnicode, Case positionPiece){
-      super(pionCouleur, pionUnicode,positionPiece);
+    public Tour(boolean tourCouleur, String tourUnicode){
+      super(tourCouleur, tourUnicode);
     }
 
     public Tour(boolean pieceCouleur, String pieceUnicode, Case positionPiece, int[] cases){
@@ -10,6 +10,16 @@ public class Tour extends Piece {
     }
 
     public void calculDeplacementPossible() {
+    }
+     
+     public void mangerUnePiece(){
+
+    }
+
+    public String toString(){
+      String s = " ";
+      s = this.getUnicode();
+      return s;
     }
 
 }
