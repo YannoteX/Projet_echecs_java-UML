@@ -1,8 +1,8 @@
 
 public class Cavalier extends Piece {
    
-    public Cavalier(boolean pionCouleur, String pionUnicode, Case positionPiece){
-      super(pionCouleur, pionUnicode,positionPiece);
+    public Cavalier(boolean cavalierCouleur, String cavalierUnicode){
+      super(cavalierCouleur, cavalierUnicode);
     }
 
     public Cavalier(boolean pieceCouleur, String pieceUnicode, Case positionPiece, int[] cases){
@@ -12,4 +12,14 @@ public class Cavalier extends Piece {
     public void calculDeplacementPossible() {
     }
 
+  
+    public void mangerUnePiece(){
+
+    }
+
+    public String toString(){
+      String s = " ";
+      s = this.getUnicode();
+      return s;
+    }
 }
