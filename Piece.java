@@ -42,6 +42,15 @@ public class Piece {
   public int[] getCaseDeplacer() {
     return this.caseDeplacer;
   }
+  
+  public int getUneCaseDeplacer(int indice) {
+    for(int i = 0; i < this.caseDeplacer.length; i++){
+      if(indice == i){
+        return caseDeplacer[i];
+      }
+    }
+    return -1;
+  }
 
   //*********** Les Setters *************
 
