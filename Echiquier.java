@@ -152,6 +152,19 @@ public class Echiquier {
 
 
     }
+    
+    public void deplacerPiece(int caseD, int caseA){
+      Case depart = getUneCase(caseD);
+      Case arrivee = getUneCase(caseA);
+      Piece copie = depart.getPiece();
+
+      depart.setPiece(null);
+      arrivee.setPiece(copie);
+    }
+
+    public void calculDeplacementPiece(int caseA){
+      this.getUneCase(caseA).getPiece().calculDeplacementPossible();
+    }
 
 
     public boolean coupValide(int caseD, int caseA, boolean couleurJoueur){
