@@ -154,7 +154,19 @@ public class Echiquier {
     }
 
 
-    public synchronized void coupValide(int caseAVerifier) {
+    public boolean coupValide(int caseD, int caseA, boolean couleurJoueur){
+
+      Case c = getUneCase(caseD);
+      if(c!= null){ //regarde si la case départ match avec CaseD pui si Cla couleur de la piece à l'intérieur est la même que CouleurJoueur
+
+        if(c.getPiece().isCouleur() == couleurJoueur){
+
+          if(c.getPiece().getUneCaseDeplacer(caseA) != -1){ //rearde si CaseA et dans le tableau de déplacement de la piece
+            return true;
+          }
+        }
+      }
+      return false;
     }
 
 
