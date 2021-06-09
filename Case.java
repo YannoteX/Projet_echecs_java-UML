@@ -1,25 +1,20 @@
 public class Case {
 
   //********** Les Attributs **********
+  
   private boolean couleur;  //noir -> false  ;  blanc -> true
   public int id;  //notation (ex:31) : Colonne | Ligne
   private boolean caseOccupee;
   private Piece piece;
 
   //********** Les Constructeurs **********
+  
   public Case(boolean caseCouleur, int caseId, Piece piece, boolean caseOccup) {
     this.couleur = caseCouleur;
     this.id = caseId;
     this.caseOccupee = caseOccup;
     this.piece = piece;
   }
-
-  /*public Case(boolean caseCouleur, int caseId, boolean caseOccup, boolean pieceCouleur, String pieceUnicode) {
-    this.couleur = caseCouleur;
-    this.id = caseId;
-    this.caseOccupee = caseOccup;
-    this.piece = new Piece(pieceCouleur, pieceUnicode);
-  }*/
 
   public Case(boolean caseCouleur, int caseId, boolean caseOccup) {
     this.couleur = caseCouleur;
@@ -36,6 +31,7 @@ public class Case {
   }
 
   //********** Les Getters **********
+  
   public boolean isCouleur() {
     return this.couleur;
   }
@@ -53,6 +49,7 @@ public class Case {
   }
 
   //********** Les Setters **********
+  
   public void setCouleur(boolean newColor) {
     this.couleur = newColor;
   }
@@ -70,6 +67,8 @@ public class Case {
   }
 
   //********** Les Méthodes **********
+  
+  
   public Piece pieceExistante(Case c) {
     if (isCaseOccupee(c)==true) {
       return c.getPiece();
