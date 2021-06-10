@@ -1,4 +1,4 @@
-package echec2;
+
 
 public class Reine extends Piece{
 	public Reine(boolean pieceCouleur, String pieceUnicode, Case positionPiece, VerificationPiece newArbitre){
