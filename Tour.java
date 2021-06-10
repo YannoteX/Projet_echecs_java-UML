@@ -1,4 +1,3 @@
-package echec2;
 
 public class Tour extends Piece{
 	public Tour(boolean pieceCouleur, String pieceUnicode, Case positionPiece, VerificationPiece newArbitre){
