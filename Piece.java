@@ -1,4 +1,4 @@
-package echec2;
+
 
 public class Piece {
 
