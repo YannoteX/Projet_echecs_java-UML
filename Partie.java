@@ -2,6 +2,8 @@
 import java.util.Scanner;
 import java.io.*;
 import java.nio.file.*;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
 public class Partie implements Serializable{
 
@@ -20,7 +22,7 @@ public class Partie implements Serializable{
 	}
 
 	public void initPartie(String newNomPartie){
-		
+
 		this.jeu.initCaseEtPiece();
 		this.joueur = true;
 		this.nomPartie = newNomPartie;
@@ -32,7 +34,7 @@ public class Partie implements Serializable{
 		catch(IOException e){
 			System.err.println(e.getStackTrace());
 		}
-		
+
 		System.out.println("Joueur blanc, c'est à vous !");
 	}
 
@@ -62,15 +64,15 @@ public class Partie implements Serializable{
 		String path="Saves\\"+name+".txt";
 
 		try{
-			System.out.println("1");
+			//System.out.println("1");
 			FileInputStream fichier = new FileInputStream(path);
-			System.out.println("2");
+			//System.out.println("2");
 			ObjectInputStream load = new ObjectInputStream(fichier);
-			System.out.println("3");
+			//System.out.println("3");
 			this.jeu = (Echiquier) load.readObject();
-			System.out.println("4");
+			//System.out.println("4");
 			load.close();
-			System.out.println("5");
+			//System.out.println("5");
 
 			BufferedReader br = Files.newBufferedReader(Paths.get("Saves\\"+name+"_history.txt"));
 			String ligne;
@@ -83,10 +85,10 @@ public class Partie implements Serializable{
 			if(derJoueur<8889){
 				this.joueur=false;
 				System.out.println("Joueu noir, c'est à vous !");
-			}	
+			}
 			else{
 				this.joueur=true;
-				System.out.println("Joueu noir, c'est à vous !");
+				System.out.println("Joueu blanc, c'est à vous !");
 			}
 
 		}
@@ -102,10 +104,10 @@ public class Partie implements Serializable{
 	}
 
 	public boolean coup(int caseD, int caseA, boolean couleurJoueur){
-		
+
 		this.jeu.calculDeplacementPiece(caseD);
 		if(this.jeu.coupValide(caseD, caseA, couleurJoueur)==true){
-			
+
 			this.jeu.deplacerPiece(caseD, caseA);
 			this.jeu.calculDeplacementPiece(caseA);
 
@@ -135,7 +137,7 @@ public class Partie implements Serializable{
 		}
 	}
 
-	public static void main(String args[]){
+	public static void main(String args[]) throws UnsupportedEncodingException{
 
 		Partie p = new Partie();
 		String coup = "";
@@ -157,16 +159,16 @@ public class Partie implements Serializable{
 			if(confirm.equals("charger")){
 				System.out.println("Entrez le nom de la partie a charger :\n");
 				Scanner verif = new Scanner (System.in);
-				System.out.println("0");
+				//System.out.println("0");
 				String ication = verif.nextLine();
-				System.out.println("1");
+				//System.out.println("1");
 
 				File test = new File("Saves\\"+ication+".txt");
-				System.out.println("2");
+				//System.out.println("2");
 				if (test.exists()){
-					System.out.println("3");
+				//	System.out.println("3");
 					p.loadPartie(ication);
-					System.out.println("4");
+				//	System.out.println("4");
 					cBon = true;
 				}
 				else{
@@ -180,6 +182,8 @@ public class Partie implements Serializable{
 				if(name.hasNextLine()){
 				String nom = name.nextLine();
 				p.initPartie(nom);
+				PrintStream out = new PrintStream (System.out, true , "UTF8" );
+				out.print(p.jeu.toString());
 				System.out.println(nom+" initialisee avec succes.");
 				cBon = true;
 				}
@@ -191,7 +195,7 @@ public class Partie implements Serializable{
 		//********************CODAGE D'UN TOUR********************//
 
 		boolean stop = false;
-		
+
 
 		while (stop == false ){
 
@@ -214,7 +218,8 @@ public class Partie implements Serializable{
 						int caseA = value - caseD*100;
 
 						if (p.coup(caseD, caseA, p.joueur)==true){
-							p.jeu.toStringReverse();
+							PrintStream out = new PrintStream (System.out, true , "UTF8" );
+							out.print(p.jeu.toStringReverse());
 							System.out.println("\nJoueur Noir, c'est a vous !\n");
 							coup+=Integer.toString(value);
 							p.saveCoup(coup);
@@ -310,15 +315,16 @@ public class Partie implements Serializable{
 				if (commandeN.hasNextInt()){
 					System.out.println("\n");
 					deplacement = commandeN.nextInt();
-				
-				
+
+
 				if (deplacement>=1111 && deplacement<=8888){
 						int value = deplacement;
 						int caseD = (int) value/100;
 						int caseA = value - caseD*100;
 
 						if (p.coup(caseD, caseA, p.joueur)==true){
-							p.jeu.toString();
+							PrintStream out = new PrintStream (System.out, true , "UTF8" );
+							out.print(p.jeu.toString());
 							System.out.println("\nJoueur Blanc, c'est a vous !\n");
 							coup+=Integer.toString(value);
 							p.saveCoup(coup+"\n");
@@ -332,7 +338,7 @@ public class Partie implements Serializable{
 					else{
 						System.out.println("Erreur : l'une de vos cases est hors de l'echiquier.");
 					}
-					
+
 				}
 				else{
 					System.out.println("\n");
@@ -384,7 +390,19 @@ public class Partie implements Serializable{
 					else if(commande.equals("aide")){
 					System.out.println(p.help());
 					}
-					
+					else if(commande.equals("stop")){
+					System.out.println("En Ãªtes-vous sÃ»r(e) ? oui/non:\n");
+					Scanner verifStop = new Scanner(System.in);
+
+						if (verifStop.hasNextLine()){
+							commandeStop = verifStop.nextLine();
+
+							if (commandeStop.equals("oui")){
+								stop=true;
+								System.out.println("La partie s'arrÃªte.");
+							}
+						}
+					}
 				}
 			}
 		}
