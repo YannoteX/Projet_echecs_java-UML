@@ -1,227 +1,410 @@
 
-//import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.*;
+import java.nio.file.*;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+
+public class Partie implements Serializable{
+
+	private Echiquier jeu;
+	private boolean joueur;
+	private String nomPartie;
+
+	public Partie(){
+		this.jeu = new Echiquier();
+		this.joueur = true;
+	}
 
 
-public class Echiquier {
+	public String help(){
+		return "rien";
+	}
 
-    public Case[] echiquier;
+	public void initPartie(String newNomPartie){
 
-    public Echiquier() {
-        echiquier = new Case[64];
-    }
+		this.jeu.initCaseEtPiece();
+		this.joueur = true;
+		this.nomPartie = newNomPartie;
 
-    public void initCaseEtPiece() {
-      boolean couleurCase=false;
-      int ligneCase=0;
-      boolean cBon = false;
-      int i = 0;
+		try{
+			File sauvegarde = new File("Saves\\"+nomPartie+"_history.txt");
+			sauvegarde.createNewFile();
+		}
+		catch(IOException e){
+			System.err.println(e.getStackTrace());
+		}
 
-      while(cBon==false){
-        int putain = 0;
-        while (putain<8){
-          ligneCase++;
-          int merde = 0;
-          int colonneCase=1;
-          while (merde<8){
-            this.echiquier[i]= new Case(couleurCase, colonneCase*10+ligneCase, null, false);
-            colonneCase++;
-            i++;
-            merde++;
-          }   
-          putain++;
-          }
-          cBon = true;
-        }
+		System.out.println("Joueur blanc, c'est à vous !");
+	}
 
-        if (couleurCase==true){
-          couleurCase=false;
-        }
-        else {
-          couleurCase=true;
-        }
+	public void setNomPartie(String name){
+		this.nomPartie=name;
+	}
 
+	public void setJoueur(boolean couleur){
+		this.joueur=couleur;
+	}
 
-        
-     // idcase à enlever et new verification piece pose problème
-       //on initailise les cases du partie blanche
-      echiquier[0].setPiece(new Tour(true,"\u265C", echiquier[0], new VerificationPiece(this)));
-      echiquier[1].setPiece(new Cavalier(true,"\u265E", echiquier[1], new VerificationPiece(this)));
-      echiquier[2].setPiece(new Fou(true,"\u265D", echiquier[2], new VerificationPiece(this)));
-      echiquier[3].setPiece(new Reine(true,"\u265B", echiquier[3], new VerificationPiece(this)));
-      echiquier[4].setPiece(new Roi(true,"\u265A", echiquier[4], new VerificationPiece(this)));
-      echiquier[5].setPiece(new Fou(true,"\u265D", echiquier[5], new VerificationPiece(this)));
-      echiquier[6].setPiece(new Cavalier(true,"\u265E", echiquier[6], new VerificationPiece(this)));
-      echiquier[7].setPiece(new Tour(true,"\u265C", echiquier[7], new VerificationPiece(this)));
-      echiquier[8].setPiece(new Pion(true,"\u265F", echiquier[8], new VerificationPiece(this)));
-      echiquier[9].setPiece(new Pion(true,"\u265F", echiquier[9], new VerificationPiece(this)));
-      echiquier[10].setPiece(new Pion(true,"\u265F", echiquier[10], new VerificationPiece(this)));
-      echiquier[11].setPiece(new Pion(true,"\u265F", echiquier[11], new VerificationPiece(this)));
-      echiquier[12].setPiece(new Pion(true,"\u265F", echiquier[12], new VerificationPiece(this)));
-      echiquier[13].setPiece(new Pion(true,"\u265F", echiquier[13], new VerificationPiece(this)));
-      echiquier[14].setPiece(new Pion(true,"\u265F", echiquier[14], new VerificationPiece(this)));
-      echiquier[15].setPiece(new Pion(true,"\u265F", echiquier[15], new VerificationPiece(this)));
+	public void saveCoup(String coup){
+		File historique = new File("Saves\\"+this.nomPartie+"_history.txt");
 
-      //initialise les cases du partie noire
+		try{
+			FileWriter fw = new FileWriter(historique, true);
+			fw.append(coup);
+			fw.close();
+		}
+		catch(IOException e){
+			System.err.println(e.getStackTrace());
+		}
+	}
 
-      echiquier[48].setPiece(new Pion(false,"\u2659", echiquier[48], new VerificationPiece(this)));
-      echiquier[49].setPiece(new Pion(false,"\u2659", echiquier[49], new VerificationPiece(this)));
-      echiquier[50].setPiece(new Pion(false,"\u2659", echiquier[50], new VerificationPiece(this)));
-      echiquier[51].setPiece(new Pion(false,"\u2659", echiquier[51], new VerificationPiece(this)));
-      echiquier[52].setPiece(new Pion(false,"\u2659", echiquier[52], new VerificationPiece(this)));
-      echiquier[53].setPiece(new Pion(false,"\u2659", echiquier[53], new VerificationPiece(this)));
-      echiquier[54].setPiece(new Pion(false,"\u2659", echiquier[54], new VerificationPiece(this)));
-      echiquier[55].setPiece(new Pion(false,"\u2659", echiquier[55], new VerificationPiece(this)));
-      echiquier[56].setPiece(new Tour(false,"\u2656", echiquier[56], new VerificationPiece(this)));
-      echiquier[57].setPiece(new Cavalier(false,"\u2658", echiquier[57], new VerificationPiece(this)));
-      echiquier[58].setPiece(new Fou(false,"\u2657", echiquier[58], new VerificationPiece(this)));
-      echiquier[59].setPiece(new Reine(false,"\u2655", echiquier[59], new VerificationPiece(this)));
-      echiquier[60].setPiece(new Roi(false,"\u2654", echiquier[60], new VerificationPiece(this)));
-      echiquier[61].setPiece(new Fou(false,"\u2657", echiquier[61], new VerificationPiece(this)));
-      echiquier[62].setPiece(new Cavalier(false,"\u2658", echiquier[62], new VerificationPiece(this)));
-      echiquier[63].setPiece(new Tour(false,"\u2656", echiquier[63], new VerificationPiece(this)));
-      
-      System.out.println(this.toString());
-    }
+	public void loadPartie(String name){
 
-    public String toString(){
-        int ligne = 8;
-        int m = 63;
-        String retour="";
+		String path="Saves\\"+name+".txt";
 
-        retour+="    |  a    b    c    d    e    f    g    h   \n";
+		try{
+			//System.out.println("1");
+			FileInputStream fichier = new FileInputStream(path);
+			//System.out.println("2");
+			ObjectInputStream load = new ObjectInputStream(fichier);
+			//System.out.println("3");
+			this.jeu = (Echiquier) load.readObject();
+			//System.out.println("4");
+			load.close();
+			//System.out.println("5");
 
-        for(int i = 1; i < 9; i++){
+			BufferedReader br = Files.newBufferedReader(Paths.get("Saves\\"+name+"_history.txt"));
+			String ligne;
+			int derJoueur = 9999;
+			ligne = br.readLine();
+			while (ligne != null) {
+				derJoueur = Integer.valueOf(ligne);
+				ligne = br.readLine();
+			}
+			if(derJoueur<8889){
+				this.joueur=false;
+				System.out.println("Joueu noir, c'est à vous !");
+			}
+			else{
+				this.joueur=true;
+				System.out.println("Joueu blanc, c'est à vous !");
+			}
 
-            retour+="\n";
-            retour+="---------------------------------------------\n";
-            retour+="  "+Integer.toString(ligne)+" ";
+		}
+		catch (IOException e){
+			System.err.println(e.getStackTrace());
+		}
+		catch (ClassNotFoundException ex){
+			System.err.println(ex.getStackTrace());
+		}
 
-            for(int j = 8; j > 0; j--){
+		this.nomPartie= name;
 
-                if(echiquier[i] != null) {
-                    String unicode = echiquier[m].afficherPieceDelaCase();
-                    retour+="|  "+unicode+" ";
-                }
-                else {
-                    retour+="| "+"    ";
-                }
-            
-             m--;
-            }
-            retour+="|";
-            ligne--;
-         }
-        retour+="\n";
-        retour+="---------------------------------------------\n";
+	}
 
-        return retour;
+	public boolean coup(int caseD, int caseA, boolean couleurJoueur){
+
+		this.jeu.calculDeplacementPiece(caseD);
+		if(this.jeu.coupValide(caseD, caseA, couleurJoueur)==true){
+
+			this.jeu.deplacerPiece(caseD, caseA);
+			this.jeu.calculDeplacementPiece(caseA);
+
+			return true;
+		}
+
+		return false;
+	}
 
 
-    }
+	public void savePartie(String name){
 
-    public String toStringReverse(){
-        int ligne = 1;
-        String retour="";
+		String path="Saves\\"+name+".txt";
+		Path chemin= Paths.get(path);
 
-        retour+="    |  h    g    f    e    d    c    b    a   \n";
-        int i = 0;
+		try{
+			Files.deleteIfExists(chemin);
 
-        while(ligne<9){
+			FileOutputStream fichier = new FileOutputStream(path);
+			ObjectOutputStream save = new ObjectOutputStream(fichier);
+			save.writeObject(this.jeu);
+			save.flush();
+			save.close();
+		}
+		catch (IOException e){
+			System.err.println(e.getStackTrace());
+		}
+	}
 
-            retour+="\n";
-            retour+="---------------------------------------------\n";
-            retour+="  "+Integer.toString(ligne)+" ";
+	public static void main(String args[]) throws UnsupportedEncodingException{
 
-            for(int j = 0; j < 8; j++){
+		Partie p = new Partie();
+		String coup = "";
+		String commande="";
+		int deplacement = 0;
+		String commandeCharger = "";
+		String nomCharge = "";
+		String commandeStop = "";
 
-                if(echiquier[i] != null) {
-                    String unicode = echiquier[i].afficherPieceDelaCase();
-                    retour+="| "+unicode+"  ";
-                }
-                else {
-                    retour+="| "+"    ";
-                }
-                i++;
-            }
-            retour+="|";
-            ligne++;
-         }
-        retour+="\n";
-        retour+="---------------------------------------------\n";
-        return retour;
+		//*********CODAGE DU COMMENCEMENT D'UNE PARTIE************//
 
+		System.out.println("Bienvenue au jeu d'echecs de la mort !!!! (sans interface).\nPour commencer, voulez vous charger une partie ou en commencer une nouvelle ? charger/commencer:");
+		boolean cBon=false;
 
-    }
-    
-    public void deplacerPiece(int caseD, int caseA){
-      Case depart = getUneCase(caseD);
-      Case arrivee = getUneCase(caseA);
-      Piece copie = depart.getPiece();
+		while (cBon == false){
+			Scanner debut = new Scanner(System.in);
+			String confirm = debut.nextLine();
 
-      depart.setPiece(null);
-      depart.setCaseOccupee(false);
-      arrivee.setPiece(copie);
-    }
+			if(confirm.equals("charger")){
+				System.out.println("Entrez le nom de la partie a charger :\n");
+				Scanner verif = new Scanner (System.in);
+				//System.out.println("0");
+				String ication = verif.nextLine();
+				//System.out.println("1");
 
-    public void calculDeplacementPiece(int casepiece){
-      this.getUneCase(casepiece).getPiece().calculDeplacementPossible();
-    }
+				File test = new File("Saves\\"+ication+".txt");
+				//System.out.println("2");
+				if (test.exists()){
+				//	System.out.println("3");
+					p.loadPartie(ication);
+				//	System.out.println("4");
+					cBon = true;
+				}
+				else{
+					System.out.println("Le fichier n'existe pas.");
+				}
+			}
+			else if(confirm.equals("commencer")){
 
+				System.out.println("Donnez un nom a votre partie\n");
+				Scanner name = new Scanner (System.in);
+				if(name.hasNextLine()){
+				String nom = name.nextLine();
+				p.initPartie(nom);
+				PrintStream out = new PrintStream (System.out, true , "UTF8" );
+				out.print(p.jeu.toString());
+				System.out.println(nom+" initialisee avec succes.");
+				cBon = true;
+				}
+			}
+			else {
+				System.out.println("Je n'ai pas compris. Rentrez Ã  nouveau :\n");
+			}
+		}
+		//********************CODAGE D'UN TOUR********************//
 
-    public boolean coupValide(int caseD, int caseA, boolean couleurJoueur){
-
-      Case c = getUneCase(caseD);
-      if(c!= null){ //regarde si la case départ match avec CaseD pui si Cla couleur de la piece à l'intérieur est la même que CouleurJoueur
-
-        if(c.getPiece() != null && c.getPiece().isCouleur() == couleurJoueur){
-
-          if(c.getPiece().getUneCaseDeplacer(caseA) != -1){ //rearde si CaseA et dans le tableau de déplacement de la piece
-            return true;
-          }
-        }
-      }
-      return false;
-    }
-
-
-    public Case getUneCase(int indice) {
-      for(int i = 0; i < this.echiquier.length; i++) {
-        if(indice == this.echiquier[i].getCaseId()){
-          return echiquier[i];
-        }
-      }
-      return null;
-    }
-
-
-    public void setUneCase(int indice, Case newCase) {
-      for(int i = 0; i < this.echiquier.length; i++){
-        if(indice == i) {
-          echiquier[i] = newCase;
-        }
-       }
-     }
+		boolean stop = false;
 
 
+		while (stop == false ){
 
-    public void echecDuRoi() {
-    }
+			// tour du joueur blanc
+
+			if(p.joueur == true){
+
+				System.out.println("\nVeuillez rentrer votre commande :\n");
+				Scanner commandeB = new Scanner(System.in);
+
+				if (commandeB.hasNextInt()){
+					System.out.println("\n");
+
+					deplacement = commandeB.nextInt();
+
+					if (deplacement>=1111 && deplacement<=8888){
+
+						int value = deplacement;
+						int caseD = (int) value/100;
+						int caseA = value - caseD*100;
+
+						if (p.coup(caseD, caseA, p.joueur)==true){
+							PrintStream out = new PrintStream (System.out, true , "UTF8" );
+							out.print(p.jeu.toStringReverse());
+							System.out.println("\nJoueur Noir, c'est a vous !\n");
+							coup+=Integer.toString(value);
+							p.saveCoup(coup);
+							p.joueur = false;
+						}
+
+						else{
+							System.out.println("Erreur : Ce coup n'est pas possible.\n");
+						}
+					}
+					else{
+						System.out.println("Erreur : l'une de vos cases est hors de l'echiquier.");
+					}
+				}
+				else{
+					System.out.println("\n");
+					commande = commandeB.nextLine();
+
+						if(commande.equals("sauvegarder")){
+
+						p.savePartie(p.nomPartie);
+						System.out.println("'"+p.nomPartie+"'a ete sauvegardee dans 'Saves\\"+p.nomPartie+".txt' avec succes.");
+						}
+
+						else if (commande.equals("charger")){
+
+					System.out.println("Voulez-vous charger une partie (pensez a sauvegarder) ? oui/non:\n");
+					Scanner verifCharger = new Scanner(System.in);
+					commandeCharger = verifCharger.nextLine();
+
+					if(commandeCharger.equals("oui")){
+
+						System.out.println("Saisissez le nom de votre partie ('stop' pour sortir) :\n");
+						boolean stopCharger = false;
+
+						while(stopCharger == false){
+							Scanner nomC = new Scanner(System.in);
+							nomCharge = nomC.nextLine();
+
+							if (nomCharge.equals("stop")){
+								stopCharger=true;
+							}
+							else{
+								Path cheminCharger = Paths.get("Saves\\"+nomCharge+".txt");
+
+								if(Files.exists(cheminCharger)==true){
+									p.loadPartie(nomCharge);
+									stopCharger=true;
+									System.out.println("'"+p.nomPartie+"'a ete chargee depuis '"+cheminCharger.toString()+"' avec succes.");
+								}
+
+								else{
+									System.out.println("Erreur : La partie n'existe pas.\n");
+								}
+							}
+						}
+					}
+
+				}
+
+					else if(commande.equals("aide")){
+					System.out.println(p.help()); //************Ã  faire
+					}
+
+					else if(commande.equals("stop")){
+					System.out.println("En Ãªtes-vous sÃ»r(e) ? oui/non:\n");
+					Scanner verifStop = new Scanner(System.in);
+
+						if (verifStop.hasNextLine()){
+							commandeStop = verifStop.nextLine();
+
+							if (commandeStop.equals("oui")){
+								stop=true;
+								System.out.println("La partie s'arrÃªte.");
+							}
+						}
+					}
+
+					else{
+					System.out.println("Commande erronÃ©e");
+					}
+
+				}
+			}
+
+			// tour du joueur noir
+
+			else{
+
+				System.out.println("\nVeuillez rentrer votre commande :\n");
+					Scanner commandeN = new Scanner(System.in);
+
+				if (commandeN.hasNextInt()){
+					System.out.println("\n");
+					deplacement = commandeN.nextInt();
 
 
-    public void echecEtMat() {
-    }
+				if (deplacement>=1111 && deplacement<=8888){
+						int value = deplacement;
+						int caseD = (int) value/100;
+						int caseA = value - caseD*100;
+
+						if (p.coup(caseD, caseA, p.joueur)==true){
+							PrintStream out = new PrintStream (System.out, true , "UTF8" );
+							out.print(p.jeu.toString());
+							System.out.println("\nJoueur Blanc, c'est a vous !\n");
+							coup+=Integer.toString(value);
+							p.saveCoup(coup+"\n");
+							p.joueur = true;
+						}
+
+						else{
+							System.out.println("Erreur : Ce coup n'est pas possible.\n");
+						}
+					}
+					else{
+						System.out.println("Erreur : l'une de vos cases est hors de l'echiquier.");
+					}
+
+				}
+				else{
+					System.out.println("\n");
+				commande = commandeN.nextLine();
+
+					if(commande.equals("sauvegarder")){
+
+					p.savePartie(p.nomPartie);
+					System.out.println("'"+p.nomPartie+"'a ete sauvegardee dans 'Saves\\"+p.nomPartie+".txt' avec succes.");
+					}
+
+					else if (commande.equals("charger")){
+
+					System.out.println("Voulez-vous charger une partie (pensez a sauvegarder) ? oui/non:\n");
+					Scanner verifCharger = new Scanner(System.in);
+					commandeCharger = verifCharger.nextLine();
 
 
+					if(commandeCharger.equals("oui")){
 
-    public boolean caseValide(int idCase) {
-      if(idCase < 0 || idCase > 64){
-        return false;
-      }
-      return true;
-    }
+						System.out.println("Saisissez le nom de votre partie ('stop' pour sortir) :\n");
+						boolean stopCharger = false;
 
+						while(stopCharger == false){
+							Scanner nomC = new Scanner(System.in);
+							nomCharge = nomC.nextLine();
 
-    public void roicloue(Case[] tableauDeJeu, int coup, boolean couleurRoi) {
-    }
+							if (nomCharge.equals("stop")){
+								stopCharger=true;
+							}
+							else{
+								Path cheminCharger = Paths.get("Saves\\"+nomCharge+".txt");
 
+								if(Files.exists(cheminCharger)==true){
+									p.loadPartie(nomCharge);
+									stopCharger=true;
+									System.out.println("'"+p.nomPartie+"'a ete chargee depuis '"+cheminCharger.toString()+"' avec succes.");
+								}
+
+								else{
+									System.out.println("Erreur : La partie n'existe pas.\n");
+								}
+							}
+						}
+					}
+
+					}
+
+					else if(commande.equals("aide")){
+					System.out.println(p.help());
+					}
+					else if(commande.equals("stop")){
+					System.out.println("En Ãªtes-vous sÃ»r(e) ? oui/non:\n");
+					Scanner verifStop = new Scanner(System.in);
+
+						if (verifStop.hasNextLine()){
+							commandeStop = verifStop.nextLine();
+
+							if (commandeStop.equals("oui")){
+								stop=true;
+								System.out.println("La partie s'arrÃªte.");
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
