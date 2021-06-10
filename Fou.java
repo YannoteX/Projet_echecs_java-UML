@@ -1,4 +1,4 @@
-package echec2;
+
 
 public class Fou extends Piece{
 	public Fou(boolean pieceCouleur, String pieceUnicode, Case positionPiece, VerificationPiece newArbitre){
