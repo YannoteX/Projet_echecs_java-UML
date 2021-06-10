@@ -1,4 +1,4 @@
-package echec2;
+
 import java.util.Scanner;
 import java.io.*;
 import java.nio.file.*;
@@ -33,7 +33,7 @@ public class Partie implements Serializable{
 			System.err.println(e.getStackTrace());
 		}
 		
-		System.out.println("Joueur blanc, c'est � vous !");
+		System.out.println("Joueur blanc, c'est à vous !");
 	}
 
 	public void setNomPartie(String name){
@@ -82,11 +82,11 @@ public class Partie implements Serializable{
 			}
 			if(derJoueur<8889){
 				this.joueur=false;
-				System.out.println("Joueu noir, c'est � vous !");
+				System.out.println("Joueu noir, c'est à vous !");
 			}	
 			else{
 				this.joueur=true;
-				System.out.println("Joueu noir, c'est � vous !");
+				System.out.println("Joueu noir, c'est à vous !");
 			}
 
 		}
@@ -185,7 +185,7 @@ public class Partie implements Serializable{
 				}
 			}
 			else {
-				System.out.println("Je n'ai pas compris. Rentrez à nouveau :\n");
+				System.out.println("Je n'ai pas compris. Rentrez Ã  nouveau :\n");
 			}
 		}
 		//********************CODAGE D'UN TOUR********************//
@@ -276,11 +276,11 @@ public class Partie implements Serializable{
 				}
 
 					else if(commande.equals("aide")){
-					System.out.println(p.help()); //************à faire
+					System.out.println(p.help()); //************Ã  faire
 					}
 
 					else if(commande.equals("stop")){
-					System.out.println("En êtes-vous sûr(e) ? oui/non:\n");
+					System.out.println("En Ãªtes-vous sÃ»r(e) ? oui/non:\n");
 					Scanner verifStop = new Scanner(System.in);
 
 						if (verifStop.hasNextLine()){
@@ -288,13 +288,13 @@ public class Partie implements Serializable{
 
 							if (commandeStop.equals("oui")){
 								stop=true;
-								System.out.println("La partie s'arrête.");
+								System.out.println("La partie s'arrÃªte.");
 							}
 						}
 					}
 
 					else{
-					System.out.println("Commande erronée");
+					System.out.println("Commande erronÃ©e");
 					}
 
 				}
